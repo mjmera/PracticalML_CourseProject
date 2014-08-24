@@ -1,99 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Practicalml courseproject by mjmera</title>
+    <meta name="description" content="Practicalml courseproject : ">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <title>Practicalml courseproject</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header class="without-description">
-        <h1>Practicalml courseproject</h1>
-        <p></p>
-        <p class="view"><a href="https://github.com/mjmera/PracticalML_CourseProject">View the Project on GitHub <small>mjmera/PracticalML_CourseProject</small></a></p>
-        <ul>
-          <li><a href="https://github.com/mjmera/PracticalML_CourseProject/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/mjmera/PracticalML_CourseProject/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/mjmera/PracticalML_CourseProject">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <hr><p>title: "PML_Project"
-author: "MJ Mera"
-date: "Sunday, August 24, 2014"</p>
 
-<h2>
-<a name="output-html_document" class="anchor" href="#output-html_document"><span class="octicon octicon-link"></span></a>output: html_document</h2>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/mjmera/PracticalML_CourseProject">View on GitHub</a>
 
-<h2>
-<a name="goal" class="anchor" href="#goal"><span class="octicon octicon-link"></span></a>GOAL</h2>
+          <h1 id="project_title">Practicalml courseproject</h1>
+          <h2 id="project_tagline"></h2>
 
-<p>Using the data obtained from 6 participants we will fit a model that predicts if a barbell lift was performed correctly or incorrectly in 5 different ways. The "classe" variable indicates which observations were A, B,c, D, E.</p>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/mjmera/PracticalML_CourseProject/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/mjmera/PracticalML_CourseProject/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
 
-<h2>
-<a name="model-build" class="anchor" href="#model-build"><span class="octicon octicon-link"></span></a>MODEL BUILD</h2>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
 
-<p>I chose to implement the Random Forest method for classification due to its high accuracy.</p>
+<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
 
-<ol>
-<li>Load the data</li>
-<li>Clean the data. Convert blanks and na to NA. Use complete cases to eliminate the columns that are incomplete. Eliminate columns 1 and 2. Convert cvtd_timestamp to a numeric value. </li>
-<li>Fit the model using the randomForest funtion from library(randomForest)</li>
-</ol><div class="highlight highlight-r"><pre><span class="kn">library</span><span class="p">(</span>randomForest<span class="p">)</span>
+<pre><code>$ cd your_repo_root/repo_name
+$ git fetch origin
+$ git checkout gh-pages
+</code></pre>
 
-training <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">"pml-training.csv"</span><span class="p">,</span> na.strings<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="s">"NA"</span><span class="p">,</span> <span class="s">"na"</span><span class="p">))</span>
+<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
 
-training<span class="o">$</span>cvtd_timestamp <span class="o">&lt;-</span> <span class="kp">as.numeric</span><span class="p">(</span><span class="kp">as.POSIXct</span><span class="p">(</span>training<span class="o">$</span>cvtd_timestamp<span class="p">,</span> 
-                                                 format<span class="o">=</span><span class="s">"%d/%m/%Y  %H:%M"</span><span class="p">))</span>
-training<span class="o">$</span>new_window <span class="o">&lt;-</span> <span class="kp">as.numeric</span><span class="p">(</span>training<span class="o">$</span>new_window<span class="p">)</span>
-ttraining <span class="o">&lt;-</span> <span class="kp">as.data.frame</span><span class="p">(</span><span class="kp">t</span><span class="p">(</span>training<span class="p">))</span>
-complete <span class="o">&lt;-</span> complete.cases<span class="p">(</span>ttraining<span class="p">)</span>
+<h3>
+<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
 
-complete<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">&lt;-</span><span class="bp">F</span><span class="p">;</span> complete<span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">&lt;-</span><span class="bp">F</span> <span class="c1">#; complete[5]&lt;-F;complete[6]&lt;-F</span>
+<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
 
-training<span class="o">&lt;-</span> training<span class="p">[,</span>complete<span class="p">]</span>
-fit <span class="o">&lt;-</span> randomForest<span class="p">(</span>training<span class="o">$</span>classe <span class="o">~</span> <span class="m">.</span><span class="p">,</span> data<span class="o">=</span>training<span class="p">,</span> importance<span class="o">=</span><span class="bp">T</span><span class="p">)</span>
-</pre></div>
+<h3>
+<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
 
-<h2>
-<a name="cross-validation" class="anchor" href="#cross-validation"><span class="octicon octicon-link"></span></a>CROSS VALIDATION</h2>
+<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
 
-<p>The Random Forest Method does not require Cross Validation to get an unbiased estimate of the test set error. The OOB error is calculated internally.</p>
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-<h2>
-<a name="out-of-sample-error" class="anchor" href="#out-of-sample-error"><span class="octicon octicon-link"></span></a>OUT OF SAMPLE ERROR</h2>
+<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
 
-<div class="highlight highlight-r"><pre><span class="kp">print</span><span class="p">(</span>fit<span class="p">)</span>
-</pre></div>
+<h3>
+<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
 
-<h2>
-<a name="predictions-" class="anchor" href="#predictions-"><span class="octicon octicon-link"></span></a>PREDICTIONS </h2>
-
-<div class="highlight highlight-r"><pre>testing <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">"pml-testing.csv"</span><span class="p">,</span> na.strings<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">""</span><span class="p">,</span> <span class="s">"NA"</span><span class="p">,</span> <span class="s">"na"</span><span class="p">))</span>
-testing<span class="o">$</span>new_window <span class="o">&lt;-</span> <span class="kp">as.numeric</span><span class="p">(</span>testing<span class="o">$</span>new_window<span class="p">)</span>
-testing<span class="o">$</span>cvtd_timestamp <span class="o">&lt;-</span> <span class="kp">as.numeric</span><span class="p">(</span><span class="kp">as.POSIXct</span><span class="p">(</span>testing<span class="o">$</span>cvtd_timestamp<span class="p">,</span> 
-                                                 format<span class="o">=</span><span class="s">"%d/%m/%Y  %H:%M"</span><span class="p">))</span>
-testing<span class="o">&lt;-</span> testing<span class="p">[,</span>complete<span class="p">]</span>
-predictions <span class="o">&lt;-</span> predict<span class="p">(</span>fit<span class="p">,</span> testing<span class="p">,</span> type<span class="o">=</span><span class="s">"response"</span><span class="p">)</span> 
-<span class="kp">print</span><span class="p">(</span>predictions<span class="p">)</span>
-
-</pre></div>
+<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
       </section>
     </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/mjmera">mjmera</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Practicalml courseproject maintained by <a href="https://github.com/mjmera">mjmera</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
     
+
   </body>
 </html>
